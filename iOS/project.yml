@@ -1,0 +1,75 @@
+name: GolfBagLog
+options:
+  bundleIdPrefix: com.shimondeitel.golfbaglog
+  deploymentTarget:
+    iOS: "17.0"
+  createIntermediateGroups: true
+  groupSortPosition: top
+settings:
+  base:
+    MARKETING_VERSION: "1.0"
+    CURRENT_PROJECT_VERSION: "1"
+    SWIFT_VERSION: "5.0"
+    DEVELOPMENT_TEAM: "W7Q885Q59C"
+    CODE_SIGN_STYLE: Automatic
+    IPHONEOS_DEPLOYMENT_TARGET: "17.0"
+    TARGETED_DEVICE_FAMILY: "1"
+    ENABLE_USER_SCRIPT_SANDBOXING: "YES"
+targets:
+  GolfBagLog:
+    type: application
+    platform: iOS
+    sources:
+      - path: GolfBagLog
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.shimondeitel.golfbaglog
+        TARGETED_DEVICE_FAMILY: "1"
+        INFOPLIST_FILE: GolfBagLog/Info.plist
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+        ENABLE_PREVIEWS: "YES"
+        GENERATE_INFOPLIST_FILE: "NO"
+  GolfBagLogTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: GolfBagLogTests
+      - path: GolfBagLog.storekit
+    dependencies:
+      - target: GolfBagLog
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.shimondeitel.golfbaglog.tests
+        GENERATE_INFOPLIST_FILE: "YES"
+        TARGETED_DEVICE_FAMILY: "1"
+  GolfBagLogUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: GolfBagLogUITests
+    dependencies:
+      - target: GolfBagLog
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.shimondeitel.golfbaglog.uitests
+        GENERATE_INFOPLIST_FILE: "YES"
+        TARGETED_DEVICE_FAMILY: "1"
+schemes:
+  GolfBagLog:
+    build:
+      targets:
+        GolfBagLog: all
+        GolfBagLogTests: [test]
+        GolfBagLogUITests: [test]
+    run:
+      config: Debug
+      storeKitConfiguration: GolfBagLog.storekit
+    test:
+      config: Debug
+      storeKitConfiguration: GolfBagLog.storekit
+      targets:
+        - GolfBagLogTests
+        - GolfBagLogUITests
+    archive:
+      config: Release
